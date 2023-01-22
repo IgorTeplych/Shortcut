@@ -39,10 +39,10 @@ namespace BasicStructures
             T[] tempArray = new T[array.Length - 1];
 
             long count = 0;
-            while (count < index - 1)
+            while (count < index)
             {
-                count++;
                 tempArray[count] = array[count];
+                count++;
             }
             count++;
             while (count++ < tempArray.Length)

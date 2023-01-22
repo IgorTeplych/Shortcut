@@ -14,7 +14,7 @@ namespace Shortcut
         int[][] G;
         SingleArray<int> path;
         int startVertex;
-        public void GetShortPath(int[][] g, int startVertex, int endVertex)
+        public Edge[] GetShortPath(int[][] g, int startVertex, int endVertex)
         {
             G = g;
             this.startVertex = startVertex;
@@ -41,6 +41,15 @@ namespace Shortcut
                 }
             }
             SearchPath(endVertex);
+
+            SingleArray<Edge> edges = new SingleArray<Edge>();
+            while (path.Size > 1)
+            {
+                Edge edge = new Edge(path.Get(path.Size - 1), path.Get(path.Size - 2));
+                edges.Add(edge, edges.Size);
+                path.Remove(path.Size - 1);
+            }
+            return edges.Array;
         }
 
         void SearchPath(int vertex)
